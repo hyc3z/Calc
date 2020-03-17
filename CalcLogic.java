@@ -85,7 +85,7 @@ public class CalcLogic implements ActionListener {
                     }
                     cachedOperand = "";
                     cachedOperator = "";
-                    System.out.println(result);
+//                    System.out.println(result);
                     computeStack.push(Integer.toString(result));
                 }
                 else{
@@ -129,9 +129,14 @@ public class CalcLogic implements ActionListener {
         }
         else if(isOperator(command)){
             if(!computeStack.empty()){
-                String stackTop = computeStack.peek();
-                if (isOperator(stackTop)) {
-                    computeStack.pop();
+                if(computeStack.size() >= 3){
+                    compute();
+                }
+                else{
+                    String stackTop = computeStack.peek();
+                    if (isOperator(stackTop)) {
+                        computeStack.pop();
+                    }
                 }
                 computeStack.push(command);
             }
